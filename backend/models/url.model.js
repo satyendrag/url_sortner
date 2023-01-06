@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const ShortUniqueId = require("short-unique-id");
-const uid = new ShortUniqueId();
+const uid = new ShortUniqueId({ length: 6 }); //as much as length the chance of collision is less
 const urlSchema = new mongoose.Schema(
   {
     fullUrl: {
@@ -9,7 +9,9 @@ const urlSchema = new mongoose.Schema(
     },
     hashUrl: {
       type: String,
-      default: uid(),
+      default: function () {
+        return uid();
+      },
     },
   },
   { timestamps: true }

@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const mongoose = require("mongoose");
 const urlRoute = require("./routes/url.route");
+const cors = require("cors");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -21,6 +22,7 @@ mongoose
 
 //middleware setup
 
+app.use(cors()); // don't do this in production it create a high security risk
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -12,8 +12,7 @@ exports.hashUrl = catchAsyncError(async (req, res, next) => {
 
   // there may be a case that full url will be in our db then no need to create another hash url
   const isUrlExist = await urlModel.findOne({ fullUrl });
-  console.log("test");
-  console.log(isUrlExist);
+
   if (isUrlExist) {
     const hashedUrl = isUrlExist.hashUrl;
     return res.status(200).send({
@@ -24,8 +23,6 @@ exports.hashUrl = catchAsyncError(async (req, res, next) => {
 
   // creating hash url
   const urlObject = await urlModel.create({ fullUrl });
-  console.log(urlObject);
-
   const hashedUrl = urlObject.hashUrl;
   res.status(200).send({
     success: true,
@@ -35,9 +32,7 @@ exports.hashUrl = catchAsyncError(async (req, res, next) => {
 
 exports.getHashUrl = catchAsyncError(async (req, res, next) => {
   const hashUrl = req.params.hashUrl;
-  console.log(hashUrl);
   const urlObject = await urlModel.findOne({ hashUrl });
-  console.log(urlObject);
   if (!urlObject) {
     return res.status(404).send("Invalid hash url");
   }
