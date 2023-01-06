@@ -1,7 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const mongoose = require("mongoose");
-const { default: router } = require("./routes/url.routes");
+const urlRoute = require("./routes/url.route");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 
-app.use("/", router);
+app.use("/", urlRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

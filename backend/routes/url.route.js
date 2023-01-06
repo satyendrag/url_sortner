@@ -6,4 +6,4 @@ const router = express.Router();
 router.post("/hashUrl", hashUrl);
 router.get("/:hashUrl", getHashUrl);
 
-export default router;
+module.exports = router;

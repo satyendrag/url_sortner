@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const { ShortUniqueId } = require("short-unique-id");
-
+const ShortUniqueId = require("short-unique-id");
+const uid = new ShortUniqueId();
 const urlSchema = new mongoose.Schema(
   {
     fullUrl: {
@@ -9,7 +9,7 @@ const urlSchema = new mongoose.Schema(
     },
     hashUrl: {
       type: String,
-      default: new ShortUniqueId({ length: 10 }),
+      default: uid(),
     },
   },
   { timestamps: true }
